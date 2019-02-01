@@ -15,22 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.contrib.auth.models import User
 from ProjectAPI.blog import views 
 from rest_framework import routers 
-from ProjectAPI.blog.views import BlogPostViewSet,PostViewSet,CommentViewSet
+from ProjectAPI.blog.views import PostViewSet,CommentViewSet,UserViewSet
 
 
 router = routers.DefaultRouter()
-router.register('blog/create', views.BlogPostViewSet)
-router.register('post/create', views.PostViewSet)
-router.register('comment/create', views.CommentViewSet)
+router.register('blog/users/create', views.UserViewSet)
+router.register('blog/post/create', views.PostViewSet)
+router.register('blog/comment/create', views.CommentViewSet)
 
 
 urlpatterns = [
     #path('',views.PostViewSet, name='post'),
-    path("post/list/",views.PostViewSet, name='post_list'),
-    path('post/<int:pk>/', views.PostViewSet, name='post_id'),
-    
+    # path("post/list/",views.PostViewSet, name='post_list'),
+    # path('post/<int:pk>/', views.PostViewSet, name='post_id'),
     #path('<int:pk>/comment/<int:pk>/',views.CommentViewSet, name='comment_id'),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
